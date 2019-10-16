@@ -27,14 +27,14 @@ namespace NinjaManager.ViewModels
             ////    SimpleIoc.Default.Register<IDataService, DataService>();
             ////}
 
-            SimpleIoc.Default.Register<MainWindowVM>();
+            SimpleIoc.Default.Register<NinjaListVM>();
         }
 
-        public MainWindowVM Main
+        public NinjaListVM Main
         {
             get
             {
-                return ServiceLocator.Current.GetInstance<MainWindowVM>();
+                return ServiceLocator.Current.GetInstance<NinjaListVM>();
             }
         }
 
