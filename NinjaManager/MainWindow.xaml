@@ -6,14 +6,13 @@
         xmlns:local="clr-namespace:NinjaManager"
  
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
 
-    <Window.Resources>
-        <local:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
-    </Window.Resources>
-    <StackPanel>
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
 
-        <ListView MouseLeftButtonDown="ListView_MouseLeftButtonDown" DataContext="{Binding Ninjas, Source={StaticResource Locator}}">
+    <StackPanel >
+
+        <ListView  ItemsSource="{Binding Ninjas}" MouseLeftButtonDown="ListView_MouseLeftButtonDown" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
