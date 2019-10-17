@@ -28,6 +28,7 @@ namespace NinjaManager.ViewModels
             ////}
 
             SimpleIoc.Default.Register<NinjaListVM>();
+            SimpleIoc.Default.Register<SingleNinjaVM>();
         }
 
         public NinjaListVM Main
@@ -36,6 +37,15 @@ namespace NinjaManager.ViewModels
             {
                 return ServiceLocator.Current.GetInstance<NinjaListVM>();
             }
+        }
+
+
+        public SingleNinjaVM Ninja
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<SingleNinjaVM>();
+            }  
         }
 
 

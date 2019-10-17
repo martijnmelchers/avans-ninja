@@ -1,49 +1,41 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
     public class NinjaVM
     {
-        private Ninja _ninja;
+        public Ninja Ninja { get; set; }
 
-        public string Name
-        {
-            get
-            {
-                return _ninja.Name;
-            }
-            set
-            {
-                _ninja.Name = value;
-            }
-        }
-
-        public int  Gold
-        {
-            get
-            {
-                return _ninja.Gold;
-            }
-            set
-            {
-                _ninja.Gold = value;
-            }
-        }
-
-
-
+        public RelayCommand OpenNinjaCommand { get; set; }
+ 
         public NinjaVM()
         {
-            _ninja = new Ninja();
+            Ninja = new Ninja();
+            OpenNinjaCommand = new RelayCommand(OpenNinja);
         }
 
         public NinjaVM(Ninja ninja)
         {
-            _ninja = ninja; 
-            Gold = ninja.Gold;
-            Name = ninja.Name;
+            Ninja = ninja; 
+        
+            OpenNinjaCommand = new RelayCommand(OpenNinja);
+        }
+
+        public void OpenNinja()
+        {
+            var dataContext = SimpleIoc.Default.GetInstance<SingleNinjaVM>();
+            // Open single ninja.
+            var window = new NinjaWindow();
+            dataContext.Ninja = Ninja;
+            window.DataContext = dataContext;
+            window.Visibility = Visibility.Visible;
         }
     }
 }

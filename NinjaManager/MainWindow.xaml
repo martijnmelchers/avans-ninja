@@ -15,8 +15,18 @@
         <ListView  ItemsSource="{Binding Ninjas}" MouseLeftButtonDown="ListView_MouseLeftButtonDown" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Name}"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Gold}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Ninja.Name}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Ninja.Gold}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
+
+                    <GridViewColumn Header="Delete" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Delete" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
                 </GridView>
             </ListView.View>
         </ListView>
