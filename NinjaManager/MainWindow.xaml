@@ -17,6 +17,8 @@
                 <GridView>
                     <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Ninja.Name}"></GridViewColumn>
                     <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Ninja.Gold}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Strength" DisplayMemberBinding="{Binding Ninja.Strength}"></GridViewColumn>
+                    <GridViewColumn Width="100" Header="Inventory Count" DisplayMemberBinding="{Binding Ninja.Inventory.Count}"></GridViewColumn>
                     <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
 
                     <GridViewColumn Header="Delete" Width="200">

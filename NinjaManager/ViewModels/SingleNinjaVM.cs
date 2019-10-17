@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -20,9 +21,20 @@ namespace NinjaManager.ViewModels
             NinjaChangeCommand = new RelayCommand(NinjaChange);
         }
 
+
         public void NinjaChange()
         {
-            Ninja.Name = "Saus";
+
+            var inv = new ObservableCollection<Equipment>();
+            inv = Ninja.Inventory;
+
+            Ninja.Inventory = new ObservableCollection<Equipment>();
+            inv.Add(new Equipment { Agility = 10, Strength = 20, Intelligence = 30 });
+
+            Ninja.Inventory = inv;
+
+            RaisePropertyChanged("Ninja");
+
         }
     }
 }

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace NinjaManager.Models
 {
-    public class Stats
+    public interface IStats
     {
         // Stats
-        public int Strength { get; set; }
-        public int Inteligience { get; set; }
+        public int Strength { get; set;  }
+        public int Intelligence { get; set; }
         public int Agility { get; set; }
     }
 }

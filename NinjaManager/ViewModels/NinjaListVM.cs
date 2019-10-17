@@ -10,7 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
-    public class NinjaListVM
+    public class NinjaListVM : ViewModelBase
     {
 
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
@@ -21,10 +21,10 @@ namespace NinjaManager.ViewModels
 
             var ninjas = new List<Ninja>
             {
-                new Ninja{ Name = "Joep", Gold = 100, Inventory = new List<Equipment>(), Agility = 10,Strength = 10, Intelligence = 0 },
-                new Ninja{ Name = "Kanker", Gold = 100, Inventory = new List<Equipment>(), Agility = 10,Strength = 10, Intelligence = 0 },
-                new Ninja{ Name = "Mogool", Gold = 1000, Inventory = new List<Equipment>(), Agility = 10,Strength = 10, Intelligence = 0 },
-                new Ninja{ Name = "Stoeptegel", Gold = 1, Inventory = new List<Equipment>(), Agility = 10,Strength = 10, Intelligence = 10000 },
+                new Ninja{ Name = "Joep", Gold = 100, Inventory = new ObservableCollection<Equipment>()},
+                new Ninja{ Name = "Kanker", Gold = 100, Inventory =  new ObservableCollection<Equipment>()},
+                new Ninja{ Name = "Mogool", Gold = 1000, Inventory =  new ObservableCollection<Equipment>()},
+                new Ninja{ Name = "Stoeptegel", Gold = 1, Inventory =  new ObservableCollection<Equipment>()},
             };
 
 
@@ -42,9 +42,10 @@ namespace NinjaManager.ViewModels
 
         public void AddNinja()
         {
-            Ninjas.Add(new NinjaVM(new Ninja { Name = "Gekke harry", Gold = 1, Inventory = new List<Equipment>(), Agility = 10, Strength = 10, Intelligence = 10000 }));
-        }
 
-  
+            var ninjaVM  = new NinjaVM(new Ninja { Name = "Gekke harry", Gold = 1, Inventory = new ObservableCollection<Equipment>() });
+            
+            Ninjas.Add(ninjaVM);
+        }
     }
 }
