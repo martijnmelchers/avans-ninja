@@ -1,15 +1,11 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
-    public class SingleNinjaVM : ViewModelBase
+    public class SingleNinjaVM : BaseVM
     {
         public string Saus { get; set; }
         public Ninja Ninja { get; set; }
@@ -25,15 +21,13 @@ namespace NinjaManager.ViewModels
         public void NinjaChange()
         {
 
-            var inv = new ObservableCollection<Equipment>();
-            inv = Ninja.Inventory;
+            var inv = new ObservableCollection<Gear>(Ninja.Gear);
 
-            Ninja.Inventory = new ObservableCollection<Equipment>();
-            inv.Add(new Equipment { Agility = 10, Strength = 20, Intelligence = 30 });
+            inv.Add(new Gear { Agility = 10, Strength = 20, Intelligence = 30 });
 
-            Ninja.Inventory = inv;
+            Ninja.Gear = new List<Gear>(inv);
 
-            RaisePropertyChanged("Ninja");
+            RaisePropertyChanged(nameof(Ninja));
 
         }
     }

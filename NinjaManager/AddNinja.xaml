@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NinjaManager"
         mc:Ignorable="d"
-        Title="AddNinja" Height="450" Width="800">
+        Title="AddNinja" Height="450" Width="800"
+>
     <Grid>
-        
+        <TextBox Text="{Binding Name, Mode=TwoWay}"  HorizontalAlignment="Left" Margin="55,66,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="55,99,0,0" Text="{Binding Gold, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+
+        <Button Command="{Binding CreateNinjaCommand}" Content="Aanmaken" HorizontalAlignment="Left" Margin="55,122,0,0" VerticalAlignment="Top" Height="37" Width="69"/>
+
     </Grid>
 </Window>

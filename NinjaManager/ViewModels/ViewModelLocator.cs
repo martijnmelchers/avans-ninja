@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using NinjaManager.ViewModels;
 
@@ -29,6 +30,8 @@ namespace NinjaManager.ViewModels
 
             SimpleIoc.Default.Register<NinjaListVM>();
             SimpleIoc.Default.Register<SingleNinjaVM>();
+            SimpleIoc.Default.Register<AddNinjaVM>();
+
         }
 
         public NinjaListVM Main
@@ -48,6 +51,13 @@ namespace NinjaManager.ViewModels
             }  
         }
 
+        public AddNinjaVM AddNinja
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<AddNinjaVM>();
+            }
+        }
 
         public static void Cleanup()
         {

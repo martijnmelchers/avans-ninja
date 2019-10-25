@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Data.Entity;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
@@ -10,22 +12,30 @@ using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
-    public class NinjaListVM : ViewModelBase
+    public class NinjaListVM : BaseVM
     {
-
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
-
         public ICommand AddNinjaCommand { get; set; }
         public NinjaListVM()
         {
+            Ninjas = new ObservableCollection<NinjaVM>(FetchNinjas());
+            AddNinjaCommand = new RelayCommand(OpenNinjaScreen);
+        }
 
-            var ninjas = new List<Ninja>
-            {
-                new Ninja{ Name = "Joep", Gold = 100, Inventory = new ObservableCollection<Equipment>()},
-                new Ninja{ Name = "Kanker", Gold = 100, Inventory =  new ObservableCollection<Equipment>()},
-                new Ninja{ Name = "Mogool", Gold = 1000, Inventory =  new ObservableCollection<Equipment>()},
-                new Ninja{ Name = "Stoeptegel", Gold = 1, Inventory =  new ObservableCollection<Equipment>()},
-            };
+        public void AddNinja(NinjaVM ninja)
+        {
+            Ninjas.Add(ninja);
+        }
+
+        public void OpenNinjaScreen()
+        {
+            OpenWindow<AddNinja, AddNinjaVM>();
+        }
+
+        private List<NinjaVM> FetchNinjas()
+        {
+            var ninjas = _db.Ninjas.Include(n => n.Gear).ToList();
+
 
 
             var ninjaVMs = new List<NinjaVM>();
@@ -36,16 +46,7 @@ namespace NinjaManager.ViewModels
                 ninjaVMs.Add(new NinjaVM(ninja));
             });
 
-            Ninjas = new ObservableCollection<NinjaVM>(ninjaVMs);
-            AddNinjaCommand = new RelayCommand(AddNinja);
-        }
-
-        public void AddNinja()
-        {
-
-            var ninjaVM  = new NinjaVM(new Ninja { Name = "Gekke harry", Gold = 1, Inventory = new ObservableCollection<Equipment>() });
-            
-            Ninjas.Add(ninjaVM);
+            return ninjaVMs;
         }
     }
 }

@@ -7,8 +7,8 @@ namespace NinjaManager.Models
     public interface IStats
     {
         // Stats
-        public int Strength { get; set;  }
-        public int Intelligence { get; set; }
-        public int Agility { get; set; }
+        public int Strength { get;  }
+        public int Intelligence { get; }
+        public int Agility { get; }
     }
 }

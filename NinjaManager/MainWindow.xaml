@@ -21,10 +21,13 @@
                     <GridViewColumn Width="100" Header="Inventory Count" DisplayMemberBinding="{Binding Ninja.Inventory.Count}"></GridViewColumn>
                     <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
 
-                    <GridViewColumn Header="Delete" Width="200">
+                    <GridViewColumn Header="Opties" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Delete" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
+                                <Grid>
+                                    <Button Content="Bewerken" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
+                                    <Button Content="Verwijderen" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
+                                </Grid>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

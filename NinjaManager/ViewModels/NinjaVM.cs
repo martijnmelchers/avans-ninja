@@ -12,33 +12,34 @@ using GalaSoft.MvvmLight.Ioc;
 using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
-    public class NinjaVM: ViewModelBase
+    public class NinjaVM : BaseVM
     {
         public Ninja Ninja { get; set; }
         public RelayCommand OpenNinjaCommand { get; set; }
-        private int inventoryCount { get; set; }
+        private int InventoryCount => Ninja.Gear.Count;
 
         public NinjaVM()
         {
             Ninja = new Ninja();
+
+            /* Commands */
             OpenNinjaCommand = new RelayCommand(OpenNinja);
         }
 
         public NinjaVM(Ninja ninja)
         {
-            Ninja = ninja; 
+            Ninja = ninja;
             OpenNinjaCommand = new RelayCommand(OpenNinja);
-            Ninja.Inventory.CollectionChanged += OnCollectionChanged;
+            //Ninja.Inventory.CollectionChanged += OnCollectionChanged;
         }
 
         public void OpenNinja()
         {
-            var dataContext = SimpleIoc.Default.GetInstance<SingleNinjaVM>();
             // Open single ninja.
-            var window = new NinjaWindow();
-            dataContext.Ninja = Ninja;
-            window.DataContext = dataContext;
-            window.Visibility = Visibility.Visible;
+            var context = GetInstance<SingleNinjaVM>();
+            context.Ninja = Ninja;
+
+            OpenWindow<NinjaWindow, SingleNinjaVM>(context);
         }
 
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)

@@ -8,8 +8,15 @@
 
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
+    <PackageReference Include="EntityFramework" Version="6.3.0" />
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Migrations\201910241413379_Initial.resx">
+      <DependentUpon>201910241413379_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>
