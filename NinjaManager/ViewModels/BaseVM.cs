@@ -24,7 +24,8 @@ namespace NinjaManager.ViewModels
             _ = new TWindow
             {
                 DataContext = context ?? GetInstance<TContext>(),
-                Visibility = Visibility.Visible
+                Visibility = Visibility.Visible,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen
             };
         }
 

@@ -24,24 +24,16 @@ namespace NinjaManager.ViewModels
 
         public void OpenNinjaScreen()
         {
-            OpenWindow<AddNinja, AddNinjaVM>();
+            OpenWindow<AddNinja, AddNinjaVM>(new AddNinjaVM());
         }
 
         private List<NinjaVM> FetchNinjas()
         {
-            var ninjas = _db.Ninjas.Select(x => x.Id).ToList();
+            var ids = _db.Ninjas.Select(x => x.Id).ToList();
+            var ninjas = new List<NinjaVM>();
+            ids.ForEach(id => ninjas.Add(new NinjaVM(id)));
 
-
-
-            var ninjaVMs = new List<NinjaVM>();
-
-
-            ninjas.ForEach((ninja) =>
-            {
-                ninjaVMs.Add(new NinjaVM(ninja));
-            });
-
-            return ninjaVMs;
+            return ninjas;
         }
     }
 }

@@ -5,8 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NinjaManager"
         mc:Ignorable="d"
-        Title="Shop" Height="450" Width="800">
+        Title="Shop" Height="274" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="99*"/>
+        </Grid.ColumnDefinitions>
+        <Button Command="{Binding ToggleShopCategory}"  CommandParameter="Head" Content="Head" Width="76" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,7,0,0"/>
+        <Button Command="{Binding ToggleShopCategory}"  CommandParameter="Shoulders" Content="Shoulder" Width="76" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,48,0,0"/>
+        <Button Content="Chest" Margin="0,88,0,0" Height="41" VerticalAlignment="Top" HorizontalAlignment="Left" Width="76" Grid.ColumnSpan="2"/>
+        <Button Content="Belt" Width="76" Margin="0,128,0,0" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button Content="Legs" Width="76" Margin="0,167,0,0" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <Button Content="Boots" Width="76" Margin="0,207,0,0" HorizontalAlignment="Left" Height="41" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+        <StackPanel Margin="73,0,531,0" Grid.Column="1">
+            <ListBox Height="203" ItemsSource="{Binding ShownShopItems}">
+                <ListBoxItem>
+                   
+                </ListBoxItem>
+            </ListBox>
+        </StackPanel>
+
     </Grid>
 </Window>

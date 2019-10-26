@@ -14,6 +14,7 @@ namespace NinjaManager.ViewModels
         public ICommand OpenNinjaCommand { get; set; }
         public ICommand EditNinjaCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
+        public ICommand OpenNinjaShopCommand { get; set; }
         private int InventoryCount => Ninja.Gear.Count;
 
 
@@ -34,11 +35,11 @@ namespace NinjaManager.ViewModels
 
         public void EditNinja()
         {
-            // Open single ninja.
-            var context = GetInstance<SingleNinjaVM>();
-            context.Ninja = Ninja;
-
-            OpenWindow<NinjaWindow, SingleNinjaVM>(context);
+            OpenWindow<EditNinja, EditNinjaVM>(new EditNinjaVM(Ninja.Id));
+        }
+        public void OpenNinjaShop()
+        {
+            OpenWindow<Shop, ShopVM>(new ShopVM(Ninja.Id));
         }
 
         public void DeleteNinja()
@@ -57,11 +58,13 @@ namespace NinjaManager.ViewModels
 
         private void InitiateViewModel(int ninjaId)
         {
+            /* The database context can't track across multiple entities so we get the Ninja in the VM itself */
             Ninja = _db.Ninjas.Include(x => x.Gear).FirstOrDefault(n => n.Id == ninjaId);
 
             DeleteNinjaCommand = new RelayCommand(DeleteNinja);
             EditNinjaCommand = new RelayCommand(EditNinja);
             OpenNinjaCommand = new RelayCommand(OpenNinja);
+            OpenNinjaShopCommand = new RelayCommand(OpenNinjaShop);
         }
     }
 }

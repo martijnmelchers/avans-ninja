@@ -31,6 +31,8 @@ namespace NinjaManager.ViewModels
             _db.SaveChanges();
 
             GetInstance<NinjaListVM>().AddNinja(new NinjaVM(ninja.Id));
+
+            
         }
 
     }

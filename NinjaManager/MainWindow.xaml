@@ -10,32 +10,35 @@
 
         DataContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <StackPanel >
+    <Grid>
+        <StackPanel >
 
-        <ListView  ItemsSource="{Binding Ninjas}" MouseLeftButtonDown="ListView_MouseLeftButtonDown" >
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Ninja.Name}"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Ninja.Gold}"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Strength" DisplayMemberBinding="{Binding Ninja.Strength}"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Inventory Count" DisplayMemberBinding="{Binding Ninja.Inventory.Count}"></GridViewColumn>
-                    <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
+            <ListView ItemsSource="{Binding Ninjas}" MouseLeftButtonDown="ListView_MouseLeftButtonDown" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="231" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Ninja.Name}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Ninja.Gold}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Strength" DisplayMemberBinding="{Binding Ninja.Strength}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Inventory Count" DisplayMemberBinding="{Binding Ninja.Inventory.Count}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
 
-                    <GridViewColumn Header="Opties" Width="200">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <StackPanel>
-                                    <Button Content="Bewerken" Command="{Binding EditNinjaCommand}" CommandParameter="{Binding}"/>
-                                    <Button Content="Verwijderen" Command="{Binding DeleteNinjaCommand}" CommandParameter="{Binding}"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                        <GridViewColumn Header="Opties" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="Edit" Command="{Binding EditNinjaCommand}" CommandParameter="{Binding}"/>
+                                        <Button Content="Delete" Command="{Binding DeleteNinjaCommand}" CommandParameter="{Binding}"/>
+                                        <Button Content="Shop" Command="{Binding OpenNinjaShopCommand}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
 
-                </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <Button Command="{Binding AddNinjaCommand}">Add Ninja</Button>
-    </StackPanel>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <Button Command="{Binding AddNinjaCommand}" Content="Add Ninja" Margin="10,247,675,143"/>
+
+    </Grid>
 </Window>

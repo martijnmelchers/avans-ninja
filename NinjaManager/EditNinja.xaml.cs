@@ -7,9 +7,9 @@ namespace NinjaManager
     /// <summary>
     /// Interaction logic for AddNinja.xaml
     /// </summary>
-    public partial class AddNinja : Window
+    public partial class EditNinja : Window
     {
-        public AddNinja()
+        public EditNinja()
         {
             InitializeComponent();
 

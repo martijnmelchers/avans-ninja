@@ -12,7 +12,7 @@ namespace NinjaManager.Models
 
         }
         public DbSet<Ninja> Ninjas { get; set; }
-        public DbSet<Gear> Equipment { get; set; }
+        public DbSet<Gear> Gear { get; set; }
 
     }
 }
