@@ -26,10 +26,11 @@ namespace NinjaManager.ViewModels
 
             var ninja = new Ninja(Name, Gold);
 
-            GetInstance<NinjaListVM>().AddNinja(new NinjaVM(ninja));
 
             _db.Ninjas.Add(ninja);
             _db.SaveChanges();
+
+            GetInstance<NinjaListVM>().AddNinja(new NinjaVM(ninja.Id));
         }
 
     }

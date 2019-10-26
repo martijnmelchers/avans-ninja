@@ -24,10 +24,10 @@
                     <GridViewColumn Header="Opties" Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Grid>
-                                    <Button Content="Bewerken" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
-                                    <Button Content="Verwijderen" Command="{Binding OpenNinjaCommand }" CommandParameter="{Binding}"/>
-                                </Grid>
+                                <StackPanel>
+                                    <Button Content="Bewerken" Command="{Binding EditNinjaCommand}" CommandParameter="{Binding}"/>
+                                    <Button Content="Verwijderen" Command="{Binding DeleteNinjaCommand}" CommandParameter="{Binding}"/>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

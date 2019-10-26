@@ -1,15 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NinjaManager.Models;
 namespace NinjaManager.ViewModels
 {
     public class NinjaListVM : BaseVM
@@ -34,7 +29,7 @@ namespace NinjaManager.ViewModels
 
         private List<NinjaVM> FetchNinjas()
         {
-            var ninjas = _db.Ninjas.Include(n => n.Gear).ToList();
+            var ninjas = _db.Ninjas.Select(x => x.Id).ToList();
 
 
 

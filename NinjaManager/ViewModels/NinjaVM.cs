@@ -1,35 +1,25 @@
-using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Text;
+using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using NinjaManager.Models;
+using System.Data.Entity;
+
 namespace NinjaManager.ViewModels
 {
     public class NinjaVM : BaseVM
     {
         public Ninja Ninja { get; set; }
-        public RelayCommand OpenNinjaCommand { get; set; }
+        public ICommand OpenNinjaCommand { get; set; }
+        public ICommand EditNinjaCommand { get; set; }
+        public ICommand DeleteNinjaCommand { get; set; }
         private int InventoryCount => Ninja.Gear.Count;
 
-        public NinjaVM()
-        {
-            Ninja = new Ninja();
 
-            /* Commands */
-            OpenNinjaCommand = new RelayCommand(OpenNinja);
-        }
-
-        public NinjaVM(Ninja ninja)
+        public NinjaVM(int ninjaId)
         {
-            Ninja = ninja;
-            OpenNinjaCommand = new RelayCommand(OpenNinja);
+            InitiateViewModel(ninjaId);
             //Ninja.Inventory.CollectionChanged += OnCollectionChanged;
         }
 
@@ -42,9 +32,36 @@ namespace NinjaManager.ViewModels
             OpenWindow<NinjaWindow, SingleNinjaVM>(context);
         }
 
+        public void EditNinja()
+        {
+            // Open single ninja.
+            var context = GetInstance<SingleNinjaVM>();
+            context.Ninja = Ninja;
+
+            OpenWindow<NinjaWindow, SingleNinjaVM>(context);
+        }
+
+        public void DeleteNinja()
+        {
+            _db.Ninjas.Remove(Ninja);
+            _db.SaveChanges();
+
+            GetInstance<NinjaListVM>().Ninjas.Remove(this);
+
+        }
+
         void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             Ninja.RaisePropertyChanged("");
+        }
+
+        private void InitiateViewModel(int ninjaId)
+        {
+            Ninja = _db.Ninjas.Include(x => x.Gear).FirstOrDefault(n => n.Id == ninjaId);
+
+            DeleteNinjaCommand = new RelayCommand(DeleteNinja);
+            EditNinjaCommand = new RelayCommand(EditNinja);
+            OpenNinjaCommand = new RelayCommand(OpenNinja);
         }
     }
 }
