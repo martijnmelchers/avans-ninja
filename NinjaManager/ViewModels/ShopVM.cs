@@ -63,19 +63,19 @@ namespace NinjaManager.ViewModels
 
         public void SelectItem(int id)
         {
-            var item = ShopItems.Where(x => x.Id == id).FirstOrDefault();
+            var item = ShopItems.FirstOrDefault(x => x.Id == id);
 
             SelectedItem = new SelectedItem()
             {
                 Item = item,
-                ButtonText = Ninja.Gear.Contains(item) ? "Verkopen" : "Kopen",
+                ButtonText = Ninja.Gear.Contains(item) ? "Sell" : "Buy",
                 Enabled = Ninja.Gear.Contains(item) ? true : Ninja.Gear.Any(x => x.Category == item.Category) ? false : Ninja.Gold >= item.Price ? true : false
             };
         }
 
         public void BuySellItem(int id)
         {
-            var item = ShopItems.Where(x => x.Id == id).FirstOrDefault();
+            var item = ShopItems.FirstOrDefault(x => x.Id == id);
 
             if(Ninja.Gear.Contains(item))
             {

@@ -22,17 +22,19 @@ namespace NinjaManager.ViewModels
         public SingleNinjaVM(Ninja ninja)
         {
             Ninja = ninja;
-            HeadEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Head).FirstOrDefault());
-            ShoulderEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Shoulders).FirstOrDefault());
-            ChestEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Chest).FirstOrDefault());
-            BeltEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Belt).FirstOrDefault());
-            BootsEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Boots).FirstOrDefault());
-            PantsEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Legs).FirstOrDefault());
+            HeadEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Head));
+            ShoulderEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Shoulders));
+            ChestEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Chest));
+            BeltEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Belt));
+            BootsEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Boots));
+            PantsEquipment = GenerateText(Ninja.Gear.FirstOrDefault(x => x.Category == Category.Legs));
         }
 
         private string GenerateText(Gear gear)
         {
-            return gear == null ? "No gear\nequipped!" : $"Agility: {gear.Agility}\n" +
+            return gear == null ? "No gear\nequipped!" : 
+                $"{gear.Name}\n" +
+                $"Agility: {gear.Agility}\n" +
                 $"Strength: {gear.Strength}\n" +
                 $"Intelligence: {gear.Intelligence}";
         }
