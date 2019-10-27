@@ -44,11 +44,11 @@ namespace NinjaManager.Models
         // Clears inventory and returns the gold spent.
         public void Clear()
         {
-            var invValue = 0;
+            var goldValue = 0;
             foreach(Gear equipment in Gear)
-                invValue += equipment.Price;
+                goldValue += equipment.Price;
 
-            Gold += invValue;
+            Gold += goldValue;
 
             Gear.Clear();
         }

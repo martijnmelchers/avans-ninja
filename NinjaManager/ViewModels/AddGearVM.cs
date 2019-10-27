@@ -35,8 +35,12 @@ namespace NinjaManager.ViewModels
         public void CreateGear()
         {
 
-
-            if (Name.Length < 5)
+            if(Name == null)
+            {
+                MessageBox.Show("Name must be more than 5 characters long, the window will be closed.");
+                return;
+            }
+            else if (Name.Length < 5)
             {
                 MessageBox.Show("Name must be more than 5 characters long, the window will be closed.");
                 return;

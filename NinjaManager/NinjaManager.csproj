@@ -1,10 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\ninja.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator" Version="2.0.4" />
@@ -14,8 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AddGear.xaml.cs">
-      <SubType>Code</SubType>
+    <Resource Include="Assets\ninja.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -23,12 +35,10 @@
     <EmbeddedResource Update="Migrations\201910241413379_Initial.resx">
       <DependentUpon>201910241413379_Initial.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Page Update="AddGear.xaml">
-      <SubType>Designer</SubType>
-    </Page>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

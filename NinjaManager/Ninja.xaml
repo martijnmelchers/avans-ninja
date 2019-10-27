@@ -7,13 +7,33 @@
         mc:Ignorable="d"
         Title="Ninja" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <TextBlock Text="{Binding Ninja.Name}"></TextBlock>
-            <TextBlock Text="{Binding Ninja.Strength}"></TextBlock>
-            <TextBlock Text="{Binding Ninja.Agility}"></TextBlock>
-            <TextBlock Text="{Binding Ninja.Intelligence}"></TextBlock>
-            <TextBlock Text="{Binding Ninja.Gold}"></TextBlock>
-            <Button Command="{Binding NinjaChangeCommand}">Edit name</Button>
-        </StackPanel>
+        <Image HorizontalAlignment="Center" Height="358" Margin="0,40,0,0" VerticalAlignment="Top" Width="355" Source="assets/ninja.png"/>
+        <Rectangle HorizontalAlignment="Left" Height="106" Margin="92,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
+        <Label Content="Shoulders" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Width="109"/>
+        <Rectangle Fill="Blue" Height="4" Margin="0,0,420,386" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="28.285"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label Content="{Binding ShoulderEquipment}" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" Width="109"/>
+
+        <Rectangle HorizontalAlignment="Left" Height="106" Margin="538,48,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
+        <Label Content="Head" HorizontalAlignment="Left" Margin="538,48,0,0" VerticalAlignment="Top" Width="109"/>
+        <Rectangle Fill="Blue" Height="4" Margin="419,0,0,351" HorizontalAlignment="Left" Width="121" VerticalAlignment="Bottom" >
+            <Rectangle.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="6.015"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Label Content="{Binding HeadEquipment}" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" Width="109"/>
     </Grid>
 </Window>

@@ -13,23 +13,28 @@
     <Grid>
         <StackPanel >
 
-            <ListView ItemsSource="{Binding Ninjas}" MouseLeftButtonDown="ListView_MouseLeftButtonDown" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="231" >
+            <ListView ItemsSource="{Binding Ninjas}" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="231">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Ninja.Name}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Ninja.Gold}"></GridViewColumn>
-                        <GridViewColumn Width="100" Header="Strength" DisplayMemberBinding="{Binding Ninja.Strength}"></GridViewColumn>
-                        <GridViewColumn Width="100" Header="Inventory Count" DisplayMemberBinding="{Binding Ninja.Inventory.Count}"></GridViewColumn>
-                        <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Button}"></GridViewColumn>
-
-                        <GridViewColumn Header="Opties" Width="200">
+                        <GridViewColumn Header="Options" Width="315">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <Button Content="Edit" Command="{Binding EditNinjaCommand}" CommandParameter="{Binding}"/>
-                                        <Button Content="Delete" Command="{Binding DeleteNinjaCommand}" CommandParameter="{Binding}"/>
-                                        <Button Content="Shop" Command="{Binding OpenNinjaShopCommand}" CommandParameter="{Binding}"/>
-                                    </StackPanel>
+                                        <Grid Width="300">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*" />
+                                                <ColumnDefinition Width="2*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button Content="Open" Command="{Binding OpenNinjaCommand}" Grid.Column="0"/>
+                                            <Button Content="Edit" Command="{Binding EditNinjaCommand}" Grid.Column="1"/>
+                                            <Button Content="Delete" Command="{Binding DeleteNinjaCommand}" Grid.Column="2"/>
+                                            <Button Content="Shop" Command="{Binding OpenNinjaShopCommand}" Grid.Column="3"/>
+                                            <Button Content="Clear" Command="{Binding ClearNinjaCommand}" Grid.Column="4"/>
+                                        </Grid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

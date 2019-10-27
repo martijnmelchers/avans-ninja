@@ -15,13 +15,13 @@ namespace NinjaManager.ViewModels
         public ICommand EditNinjaCommand { get; set; }
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand OpenNinjaShopCommand { get; set; }
+        public ICommand ClearNinjaCommand { get; set; }
         private int InventoryCount => Ninja.Gear.Count;
 
 
-        public NinjaVM(int ninjaId)
-        {
-            InitiateViewModel(ninjaId);
-        }
+        public NinjaVM(int ninjaId) => InitiateViewModel(ninjaId);
+
+
 
         public void OpenNinja()
         {
@@ -38,8 +38,14 @@ namespace NinjaManager.ViewModels
         }
         public void OpenNinjaShop()
         {
-            var VM = new ShopVM(Ninja.Id); 
+            var VM = new ShopVM(Ninja.Id);
             OpenWindow<Shop, ShopVM>(VM);
+        }
+
+        public void ClearNinja()
+        {
+            Ninja.Clear();
+            _db.SaveChanges();
         }
 
         public void DeleteNinja()
@@ -65,6 +71,7 @@ namespace NinjaManager.ViewModels
             EditNinjaCommand = new RelayCommand(EditNinja);
             OpenNinjaCommand = new RelayCommand(OpenNinja);
             OpenNinjaShopCommand = new RelayCommand(OpenNinjaShop);
+            ClearNinjaCommand = new RelayCommand(ClearNinja);
         }
     }
 }
