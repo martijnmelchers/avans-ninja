@@ -13,10 +13,12 @@ namespace NinjaManager.ViewModels
     {
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; set; }
+        public ICommand OpenGearCommand { get; set; }
         public NinjaListVM()
         {
             Ninjas = new ObservableCollection<NinjaVM>(FetchNinjas());
             AddNinjaCommand = new RelayCommand(OpenNinjaScreen);
+            OpenGearCommand = new RelayCommand(OpenGearScreen);
         }
 
         public void AddNinja(NinjaVM ninja)
@@ -27,6 +29,11 @@ namespace NinjaManager.ViewModels
         public void OpenNinjaScreen()
         {
             OpenWindow<AddNinja, AddNinjaVM>(new AddNinjaVM());
+        }
+
+        public void OpenGearScreen()
+        {
+            OpenWindow<GearWindow, GearListVM>();
         }
 
         private List<NinjaVM> FetchNinjas()

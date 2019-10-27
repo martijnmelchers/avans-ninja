@@ -1,0 +1,41 @@
+<Window x:Class="NinjaManager.GearWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NinjaManager"
+        mc:Ignorable="d"
+        Title="Gear" Height="450" Width="800">
+
+    <Grid>
+        <StackPanel >
+
+            <ListView ItemsSource="{Binding Gears}" ScrollViewer.VerticalScrollBarVisibility="Auto" Height="231" >
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="100" Header="Name" DisplayMemberBinding="{Binding Gear.Name}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Gold" DisplayMemberBinding="{Binding Gear.Price}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Strength" DisplayMemberBinding="{Binding Gear.Strength}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Agility" DisplayMemberBinding="{Binding Gear.Agility}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Intelligence" DisplayMemberBinding="{Binding Gear.Intelligence}"></GridViewColumn>
+                        <GridViewColumn Width="100" Header="Category" DisplayMemberBinding="{Binding Gear.Category}"></GridViewColumn>
+
+                        <GridViewColumn Header="Opties" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Content="Edit" Command="{Binding EditGearCommand}" CommandParameter="{Binding}"/>
+                                        <Button Content="Delete" Command="{Binding DeleteGearCommand}" CommandParameter="{Binding}"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        <Button Command="{Binding AddGearCommand}" Content="Add Gear" Margin="10,247,675,143"/>
+
+    </Grid>
+</Window>

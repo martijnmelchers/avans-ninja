@@ -14,9 +14,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AddGear.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Migrations\201910241413379_Initial.resx">
       <DependentUpon>201910241413379_Initial.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="AddGear.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>
