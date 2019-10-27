@@ -21,7 +21,6 @@ namespace NinjaManager.ViewModels
         public NinjaVM(int ninjaId)
         {
             InitiateViewModel(ninjaId);
-            //Ninja.Inventory.CollectionChanged += OnCollectionChanged;
         }
 
         public void OpenNinja()

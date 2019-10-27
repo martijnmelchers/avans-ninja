@@ -32,7 +32,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
-        <StackPanel Margin="326,0,0,0" Visibility="{Binding SelectedItem, Converter={StaticResource NullValueToVisibilityConverter}, Mode=OneWay}">
+        <StackPanel Margin="326,0,0,55" Visibility="{Binding SelectedItem, Converter={StaticResource NullValueToVisibilityConverter}, Mode=OneWay}">
             <Label Content="{Binding SelectedItem.Item.Name}"/>
             <Grid>
                 <Label Content="Agilty:" Margin="0,0,369,0"/>
@@ -51,10 +51,11 @@
                 <Label Content="{Binding SelectedItem.Item.Price}" Margin="110,0,0,0"/>
             </Grid>
             <Grid>
-                <Button IsEnabled="{Binding SelectedItem.Enabled}" Content="{Binding SelectedItem.ButtonText}" Height="25" Margin="0,0,366,0"/>
+                <Button IsEnabled="{Binding SelectedItem.Enabled}" Content="{Binding SelectedItem.ButtonText}" Command="{Binding BuySellItemCommand}" CommandParameter="{Binding SelectedItem.Item.Id}" Height="25" Margin="0,0,366,0"/>
 
             </Grid>
         </StackPanel>
+        <Label Content="{Binding NinjaMoneyText}" HorizontalAlignment="Left" Margin="326,218,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.118,-0.194" Width="183" Height="32"/>
 
     </Grid>
 </Window>

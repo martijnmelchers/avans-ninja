@@ -5,9 +5,11 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
+using NinjaManager.Models;
+
 namespace NinjaManager.ViewModels
 {
-    public class NinjaListVM : BaseVM
+    public class NinjaListVM : BaseVM, IRefreshable
     {
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; set; }
@@ -34,6 +36,12 @@ namespace NinjaManager.ViewModels
             ids.ForEach(id => ninjas.Add(new NinjaVM(id)));
 
             return ninjas;
+        }
+
+        public void Refresh()
+        {
+            Ninjas.Clear();
+            FetchNinjas().ForEach(x => Ninjas.Add(x));
         }
     }
 }

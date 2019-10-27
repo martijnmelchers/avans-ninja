@@ -2,6 +2,7 @@
 using NinjaManager.Models;
 using System;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace NinjaManager.ViewModels
@@ -21,8 +22,11 @@ namespace NinjaManager.ViewModels
 
         public void CreateNinja()
         {
-            if (Gold < 0)
+            if (Gold <= 0 || Name.Length <= 3)
+            {
+                MessageBox.Show("Name has to be longer then 3 characters, and ninja has to start with more then 0 gold", "Invalid values!", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 return;
+            }
 
             var ninja = new Ninja(Name, Gold);
 
