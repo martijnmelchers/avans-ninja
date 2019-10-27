@@ -24,10 +24,5 @@ namespace NinjaManager
         {
             InitializeComponent();
         }
-
-        private void ListView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
     }
 }

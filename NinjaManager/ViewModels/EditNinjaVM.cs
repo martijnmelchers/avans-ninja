@@ -23,11 +23,7 @@ namespace NinjaManager.ViewModels
                 return;
 
             _db.SaveChanges();
-
-            var instance = GetInstance<NinjaListVM>();
-
-            instance.Ninjas.Remove(instance.Ninjas.Where(x => x.Ninja.Id == Ninja.Id).FirstOrDefault());
-            instance.AddNinja(new NinjaVM(Ninja.Id));
+            GetInstance<NinjaListVM>().Refresh();
         }
 
     }
