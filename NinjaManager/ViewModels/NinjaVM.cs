@@ -39,7 +39,8 @@ namespace NinjaManager.ViewModels
         }
         public void OpenNinjaShop()
         {
-            OpenWindow<Shop, ShopVM>(new ShopVM(Ninja.Id));
+            var VM = new ShopVM(Ninja.Id); 
+            OpenWindow<Shop, ShopVM>(VM);
         }
 
         public void DeleteNinja()
