@@ -8,13 +8,24 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using System.Windows;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace NinjaManager.ViewModels
 {
-    class ShopVM : BaseVM
+    class ShopVM : BaseVM, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private List<Gear> ShopItems;
         public ObservableCollection<Gear> ShownShopItems { get; set; }
+        private SelectedItem _selectedItem;
+        public SelectedItem SelectedItem { 
+            get => _selectedItem; 
+            set {
+                _selectedItem = value;
+                PropertyChanged(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
+            }
+        }
         public Ninja Ninja { get; set; }
         public ICommand ToggleShopCategory { get; set; }
         public ICommand SelectShopItem { get; set; }
@@ -28,36 +39,31 @@ namespace NinjaManager.ViewModels
             Ninja = _db.Ninjas.Include(x => x.Gear).FirstOrDefault(n => n.Id == ninjaId);
             ShopItems = _db.Gear.ToList();
             ShownShopItems = new ObservableCollection<Gear>();
-            ToggleShopCategory = new RelayCommand<string>(category =>
-            {
-                Enum.TryParse(category, out Category cat);
-                ShowShopCategory(cat);
-            });
+            ToggleShopCategory = new RelayCommand<string>(ShowShopCategory);
             SelectShopItem = new RelayCommand<int>(SelectItem);
-            ShowShopCategory(Category.Head);
+            ShowShopCategory("Head");
         }
 
-        public void ShowShopCategory(Category category)
+        public void ShowShopCategory(string category)
         {
+            Enum.TryParse(category, out Category cat);
+
+
             ShownShopItems.Clear();
 
-            ShopItems.Where(x => x.Category == category).ToList().ForEach(item => ShownShopItems.Add(item));
-            var c = new Gear()
-            {
-                Name = "Headband",
-                Intelligence = 5,
-                Agility = 3,
-                Strength = 10,
-                Price = 500,
-                Category = Category.Head
-            };
-
-            ShownShopItems.Add(c);
+            ShopItems.Where(x => x.Category == cat).ToList().ForEach(item => ShownShopItems.Add(item));
         }
 
         public void SelectItem(int id)
         {
-            MessageBox.Show("Het ontvangen ID is", id.ToString());
+            var item = ShopItems.Where(x => x.Id == id).FirstOrDefault();
+
+            SelectedItem = new SelectedItem()
+            {
+                Item = item,
+                ButtonText = Ninja.Gear.Contains(item) ? "Verkopen" : "Kopen",
+                Enabled = Ninja.Gear.Contains(item) ? true : Ninja.Gear.Any(x => x.Category == item.Category) ? false : true
+            };
         }
     }
 }
