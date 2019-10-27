@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
@@ -9,26 +11,30 @@ namespace NinjaManager.ViewModels
     {
         public string Saus { get; set; }
         public Ninja Ninja { get; set; }
-        public ICommand NinjaChangeCommand { get; set; }
 
+        public string HeadEquipment { get; set; }
+        public string ShoulderEquipment { get; set; }
+        public string ChestEquipment { get; set; }
+        public string BeltEquipment { get; set; }
+        public string BootsEquipment { get; set; }
+        public string PantsEquipment { get; set; }
 
-        public SingleNinjaVM()
+        public SingleNinjaVM(Ninja ninja)
         {
-            NinjaChangeCommand = new RelayCommand(NinjaChange);
+            Ninja = ninja;
+            HeadEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Head).FirstOrDefault());
+            ShoulderEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Shoulders).FirstOrDefault());
+            ChestEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Chest).FirstOrDefault());
+            BeltEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Belt).FirstOrDefault());
+            BootsEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Boots).FirstOrDefault());
+            PantsEquipment = GenerateText(Ninja.Gear.Where(x => x.Category == Category.Legs).FirstOrDefault());
         }
 
-
-        public void NinjaChange()
+        private string GenerateText(Gear gear)
         {
-
-            var inv = new ObservableCollection<Gear>(Ninja.Gear);
-
-            inv.Add(new Gear { Agility = 10, Strength = 20, Intelligence = 30 });
-
-            Ninja.Gear = new List<Gear>(inv);
-
-            RaisePropertyChanged(nameof(Ninja));
-
+            return gear == null ? "No gear\nequipped!" : $"Agility: {gear.Agility}\n" +
+                $"Strength: {gear.Strength}\n" +
+                $"Intelligence: {gear.Intelligence}";
         }
     }
 }
