@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
-using NinjaManager.ViewModels;
+using NinjaManager.ViewModels.GearViews;
+using NinjaManager.ViewModels.NinjaViews;
 
 namespace NinjaManager.ViewModels
 {
@@ -17,22 +14,10 @@ namespace NinjaManager.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
-            ////if (ViewModelBase.IsInDesignModeStatic)
-            ////{
-            ////    // Create design time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DesignDataService>();
-            ////}
-            ////else
-            ////{
-            ////    // Create run time view services and models
-            ////    SimpleIoc.Default.Register<IDataService, DataService>();
-            ////}
-
             SimpleIoc.Default.Register<NinjaListVM>();
             SimpleIoc.Default.Register<SingleNinjaVM>();
             SimpleIoc.Default.Register<AddNinjaVM>();
             SimpleIoc.Default.Register<GearListVM>();
-            SimpleIoc.Default.Register<EditGearVM>();
 
         }
 

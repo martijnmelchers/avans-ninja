@@ -1,17 +1,17 @@
 using GalaSoft.MvvmLight;
+using NinjaManager.Models.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NinjaManager.Models
 {
-    public class Gear : ObservableObject,  IStats
+    public class Gear : ObservableObject, IStats
     {
         public Gear()
         {
 
         }
-
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -20,7 +20,8 @@ namespace NinjaManager.Models
         public Category Category { get; set; }
 
         private int _strength;
-        public int Strength {
+        public int Strength
+        {
             get => _strength;
             set => Set(nameof(Strength), ref _strength, value);
         }
@@ -40,7 +41,7 @@ namespace NinjaManager.Models
             get => _agility;
             set => Set(nameof(Agility), ref _agility, value);
         }
-        
+
         public virtual ICollection<Ninja> Ninjas { get; set; }
     }
 }

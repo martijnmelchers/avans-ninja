@@ -1,24 +1,16 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
-using System;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace NinjaManager.ViewModels
+namespace NinjaManager.ViewModels.NinjaViews
 {
     public class AddNinjaVM : BaseVM
     {
-
         public string Name { get; set; }
         public int Gold { get; set; }
         public ICommand CreateNinjaCommand { get; set; }
-
-        public AddNinjaVM()
-        {
-            CreateNinjaCommand = new RelayCommand(CreateNinja);
-            
-        }
+        public AddNinjaVM() => InitiateViewModel();
 
         public void CreateNinja()
         {
@@ -35,8 +27,11 @@ namespace NinjaManager.ViewModels
             _db.SaveChanges();
 
             GetInstance<NinjaListVM>().AddNinja(new NinjaVM(ninja.Id));
+        }
 
-            
+        private void InitiateViewModel()
+        {
+            CreateNinjaCommand = new RelayCommand(CreateNinja);
         }
 
     }

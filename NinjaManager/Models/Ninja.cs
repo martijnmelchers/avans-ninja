@@ -1,4 +1,5 @@
 using GalaSoft.MvvmLight;
+using NinjaManager.Models.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,6 @@ namespace NinjaManager.Models
     {
         public Ninja()
         {
-
         }
         public Ninja(string name, int gold)
         {
@@ -23,8 +23,6 @@ namespace NinjaManager.Models
 
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
-
         private string _name;
         public string Name
         {
@@ -46,7 +44,7 @@ namespace NinjaManager.Models
         public void Clear()
         {
             var goldValue = 0;
-            foreach(Gear equipment in Gear)
+            foreach (Gear equipment in Gear)
                 goldValue += equipment.Price;
 
             Gold += goldValue;
@@ -70,7 +68,7 @@ namespace NinjaManager.Models
             {
                 throw e;
             }
-        
+
             return statPoints;
         }
 

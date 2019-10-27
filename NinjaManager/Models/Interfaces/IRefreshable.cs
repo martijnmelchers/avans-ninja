@@ -1,4 +1,4 @@
-﻿namespace NinjaManager.Models
+﻿namespace NinjaManager.Models.Interfaces
 {
     public interface IRefreshable
     {

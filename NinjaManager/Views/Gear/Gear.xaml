@@ -20,13 +20,17 @@
                         <GridViewColumn Width="100" Header="Intelligence" DisplayMemberBinding="{Binding Gear.Intelligence}"></GridViewColumn>
                         <GridViewColumn Width="100" Header="Category" DisplayMemberBinding="{Binding Gear.Category}"></GridViewColumn>
 
-                        <GridViewColumn Header="Opties" Width="200">
+                        <GridViewColumn Header="Opties" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel>
-                                        <Button Content="Edit" Command="{Binding EditGearCommand}" CommandParameter="{Binding}"/>
-                                        <Button Content="Delete" Command="{Binding DeleteGearCommand}" CommandParameter="{Binding}"/>
-                                    </StackPanel>
+                                    <Grid Width="125">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="2*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Button Content="Edit" Command="{Binding EditGearCommand}" Grid.Column="0"/>
+                                        <Button Content="Delete" Command="{Binding DeleteGearCommand}" Grid.Column="1"/>
+                                    </Grid>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

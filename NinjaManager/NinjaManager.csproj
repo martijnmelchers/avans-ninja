@@ -4,6 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <UseWPF>true</UseWPF>
+    <StartupObject>NinjaManager.App</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,9 +19,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Assets\ninja.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,8 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Migrations\201910241413379_Initial.resx">
-      <DependentUpon>201910241413379_Initial.cs</DependentUpon>
+    <EmbeddedResource Update="Migrations\201910271940404_Initial.resx">
+      <DependentUpon>201910271940404_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

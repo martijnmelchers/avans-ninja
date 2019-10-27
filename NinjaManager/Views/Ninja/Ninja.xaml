@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Ninja" Height="601" Width="800">
     <Grid>
-        <Image HorizontalAlignment="Center" Height="358" Margin="0,40,0,0" VerticalAlignment="Top" Width="355" Source="assets/ninja.png"/>
+        <Image HorizontalAlignment="Center" Height="358" Margin="0,40,0,0" VerticalAlignment="Top" Width="355" Source="../../assets/ninja.png"/>
         <Rectangle HorizontalAlignment="Left" Height="106" Margin="92,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
         <Label Content="Shoulders" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Width="109"/>
         <Rectangle Fill="Blue" Height="4" Margin="0,0,439,495" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" >

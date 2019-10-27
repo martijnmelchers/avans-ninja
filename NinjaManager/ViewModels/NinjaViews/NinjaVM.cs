@@ -1,12 +1,11 @@
 using System.Collections.Specialized;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using NinjaManager.Models;
 using System.Data.Entity;
+using NinjaManager.Models;
 
-namespace NinjaManager.ViewModels
+namespace NinjaManager.ViewModels.NinjaViews
 {
     public class NinjaVM : BaseVM
     {
@@ -16,27 +15,10 @@ namespace NinjaManager.ViewModels
         public ICommand DeleteNinjaCommand { get; set; }
         public ICommand OpenNinjaShopCommand { get; set; }
         public ICommand ClearNinjaCommand { get; set; }
-        private int InventoryCount => Ninja.Gear.Count;
-
-
         public NinjaVM(int ninjaId) => InitiateViewModel(ninjaId);
-
-
-
-        public void OpenNinja()
-        {
-            OpenWindow<NinjaWindow, SingleNinjaVM>(new SingleNinjaVM(Ninja));
-        }
-
-        public void EditNinja()
-        {
-            OpenWindow<EditNinja, EditNinjaVM>(new EditNinjaVM(Ninja.Id));
-        }
-        public void OpenNinjaShop()
-        {
-            var VM = new ShopVM(Ninja.Id);
-            OpenWindow<Shop, ShopVM>(VM);
-        }
+        public void OpenNinja() => OpenWindow<NinjaWindow, SingleNinjaVM>(new SingleNinjaVM(Ninja));
+        public void EditNinja() => OpenWindow<EditNinja, EditNinjaVM>(new EditNinjaVM(Ninja.Id));
+        public void OpenNinjaShop() => OpenWindow<Shop, ShopVM>(new ShopVM(Ninja.Id));
 
         public void ClearNinja()
         {
@@ -51,11 +33,6 @@ namespace NinjaManager.ViewModels
 
             GetInstance<NinjaListVM>().Ninjas.Remove(this);
 
-        }
-
-        void OnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            Ninja.RaisePropertyChanged("");
         }
 
         private void InitiateViewModel(int ninjaId)

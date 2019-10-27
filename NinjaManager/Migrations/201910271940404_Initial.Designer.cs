@@ -13,7 +13,7 @@ namespace NinjaManager.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201910241413379_Initial"; }
+            get { return "201910271940404_Initial"; }
         }
         
         string IMigrationMetadata.Source

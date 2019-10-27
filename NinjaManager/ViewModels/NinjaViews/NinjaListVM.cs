@@ -1,40 +1,22 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
-using NinjaManager.Models;
+using NinjaManager.Models.Interfaces;
+using NinjaManager.ViewModels.GearViews;
 
-namespace NinjaManager.ViewModels
+namespace NinjaManager.ViewModels.NinjaViews
 {
     public class NinjaListVM : BaseVM, IRefreshable
     {
         public ObservableCollection<NinjaVM> Ninjas { get; set; }
         public ICommand AddNinjaCommand { get; set; }
         public ICommand OpenGearCommand { get; set; }
-        public NinjaListVM()
-        {
-            Ninjas = new ObservableCollection<NinjaVM>(FetchNinjas());
-            AddNinjaCommand = new RelayCommand(OpenNinjaScreen);
-            OpenGearCommand = new RelayCommand(OpenGearScreen);
-        }
-
-        public void AddNinja(NinjaVM ninja)
-        {
-            Ninjas.Add(ninja);
-        }
-
-        public void OpenNinjaScreen()
-        {
-            OpenWindow<AddNinja, AddNinjaVM>(new AddNinjaVM());
-        }
-
-        public void OpenGearScreen()
-        {
-            OpenWindow<GearWindow, GearListVM>();
-        }
+        public NinjaListVM() => InitiateViewModel();
+        public void AddNinja(NinjaVM ninja) => Ninjas.Add(ninja);
+        public void OpenNinjaScreen() => OpenWindow<AddNinja, AddNinjaVM>(new AddNinjaVM());
+        public void OpenGearScreen() => OpenWindow<GearWindow, GearListVM>();
 
         private List<NinjaVM> FetchNinjas()
         {
@@ -49,6 +31,13 @@ namespace NinjaManager.ViewModels
         {
             Ninjas.Clear();
             FetchNinjas().ForEach(x => Ninjas.Add(x));
+        }
+
+        private void InitiateViewModel()
+        {
+            Ninjas = new ObservableCollection<NinjaVM>(FetchNinjas());
+            AddNinjaCommand = new RelayCommand(OpenNinjaScreen);
+            OpenGearCommand = new RelayCommand(OpenGearScreen);
         }
     }
 }

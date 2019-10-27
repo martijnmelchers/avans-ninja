@@ -1,13 +1,10 @@
 using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace NinjaManager.ViewModels
+namespace NinjaManager.ViewModels.GearViews
 {
     public class AddGearVM : BaseVM
     {
@@ -21,21 +18,12 @@ namespace NinjaManager.ViewModels
         public Array Items { get; set; }
         public Category SelectedItem { get; set; }
         public Category Category { get; set; }
-
-        
-
         public ICommand CreateGearCommand { get; set; }
-
-        public AddGearVM()
-        {
-            CreateGearCommand = new RelayCommand(CreateGear);
-            Items = Enum.GetValues(typeof(Category));
-        }
-
+        public AddGearVM() => InitiateViewModel();
         public void CreateGear()
         {
 
-            if(Name == null)
+            if (Name == null)
             {
                 MessageBox.Show("Name must be more than 5 characters long, the window will be closed.");
                 return;
@@ -45,14 +33,15 @@ namespace NinjaManager.ViewModels
                 MessageBox.Show("Name must be more than 5 characters long, the window will be closed.");
                 return;
             }
-            if (Price < 1)
+            else if (Price < 1)
             {
                 MessageBox.Show("Prices must be higher than 0, the window will be closed.");
                 return;
             }
 
 
-            var gear = new Gear {
+            var gear = new Gear
+            {
                 Intelligence = Intelligence,
                 Strength = Strength,
                 Agility = Agility,
@@ -61,11 +50,16 @@ namespace NinjaManager.ViewModels
                 Name = Name,
             };
 
-
             _db.Gear.Add(gear);
             _db.SaveChanges();
 
             GetInstance<GearListVM>().AddGear(new GearVM(gear.Id));
+        }
+
+        public void InitiateViewModel()
+        {
+            CreateGearCommand = new RelayCommand(CreateGear);
+            Items = Enum.GetValues(typeof(Category));
         }
 
     }

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NinjaManager.Models
+namespace NinjaManager.Models.Interfaces
 {
     public interface IStats
     {
