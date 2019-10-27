@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace NinjaManager.Models
 {
@@ -59,9 +58,9 @@ namespace NinjaManager.Models
         {
 
             var statPoints = 0;
+
             try
             {
-
                 foreach (Gear equipment in Gear)
                     statPoints += (int)equipment.GetType().GetProperty(stat).GetValue(equipment, null);
             }
@@ -78,7 +77,6 @@ namespace NinjaManager.Models
         public int Strength => InventoryStat("Strength");
         public int Intelligence => InventoryStat("Intelligence");
         public int Agility => InventoryStat("Agility");
-        public int Worth => Gear.Sum(x => x.Price);
 
     }
 }

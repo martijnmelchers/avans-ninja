@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NinjaManager.ViewModels"
         mc:Ignorable="d"
-        Title="Ninja" Height="601" Width="800">
+        Title="Ninja" Height="450" Width="800">
     <Grid>
         <Image HorizontalAlignment="Center" Height="358" Margin="0,40,0,0" VerticalAlignment="Top" Width="355" Source="assets/ninja.png"/>
         <Rectangle HorizontalAlignment="Left" Height="106" Margin="92,25,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
         <Label Content="Shoulders" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Width="109"/>
-        <Rectangle Fill="Blue" Height="4" Margin="0,0,439,495" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" >
+        <Rectangle Fill="Blue" Height="4" Margin="0,0,420,386" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="171" >
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="16.692"/>
+                    <RotateTransform Angle="28.285"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Rectangle.RenderTransform>
@@ -24,84 +24,16 @@
 
         <Rectangle HorizontalAlignment="Left" Height="106" Margin="538,48,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
         <Label Content="Head" HorizontalAlignment="Left" Margin="538,48,0,0" VerticalAlignment="Top" Width="109"/>
-        <Rectangle Fill="Blue" Height="4" Margin="422,0,0,489" HorizontalAlignment="Left" Width="121" VerticalAlignment="Bottom" >
+        <Rectangle Fill="Blue" Height="4" Margin="419,0,0,351" HorizontalAlignment="Left" Width="121" VerticalAlignment="Bottom" >
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
-                    <RotateTransform Angle="9.195"/>
+                    <RotateTransform Angle="6.015"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Label Content="{Binding HeadEquipment}" HorizontalAlignment="Left" Margin="538,74,0,0" VerticalAlignment="Top" Width="109"/>
-
-        <Rectangle HorizontalAlignment="Left" Height="106" Margin="75,180,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
-        <Label Content="Chest" HorizontalAlignment="Left" Margin="75,180,0,0" VerticalAlignment="Top" Width="109"/>
-        <Rectangle Fill="Blue" Height="4" Margin="181,0,0,345" HorizontalAlignment="Left" Width="202" VerticalAlignment="Bottom" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-8.458"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Label Content="{Binding ChestEquipment}" HorizontalAlignment="Left" Margin="75,208,0,0" VerticalAlignment="Top" Width="109"/>
-
-
-        <Rectangle HorizontalAlignment="Left" Height="106" Margin="538,215,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
-        <Label Content="Belt" HorizontalAlignment="Left" Margin="538,215,0,0" VerticalAlignment="Top" Width="109"/>
-        <Rectangle Fill="Blue" Height="4" Margin="432,0,0,337" HorizontalAlignment="Left" Width="109" VerticalAlignment="Bottom" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="4.812"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Label Content="{Binding BeltEquipment}" HorizontalAlignment="Left" Margin="538,246,0,0" VerticalAlignment="Top" Width="109"/>
-
-        <Rectangle HorizontalAlignment="Left" Height="106" Margin="92,325,0,0" Stroke="Black" VerticalAlignment="Top" Width="109"/>
-        <Label Content="Pants" HorizontalAlignment="Left" Margin="92,325,0,0" VerticalAlignment="Top" Width="110" RenderTransformOrigin="0.245,0.656"/>
-        <Rectangle Fill="Blue" Height="4" Margin="198,0,0,194" HorizontalAlignment="Left" Width="174" VerticalAlignment="Bottom" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-13.477"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Label Content="{Binding PantsEquipment}" HorizontalAlignment="Left" Margin="93,351,0,0" VerticalAlignment="Top" Width="108"/>
-
-        <Rectangle HorizontalAlignment="Left" Height="106" Margin="500,358,0,0" Stroke="Black" VerticalAlignment="Top" Width="110"/>
-        <Label Content="Boots" HorizontalAlignment="Left" Margin="501,358,0,0" VerticalAlignment="Top" Width="109"/>
-        <Rectangle Fill="Blue" Height="4" Margin="434,0,0,203" HorizontalAlignment="Left" Width="79" VerticalAlignment="Bottom" >
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="22.427"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
-        <Label Content="{Binding BootsEquipment}" HorizontalAlignment="Left" Margin="501,380,0,0" VerticalAlignment="Top" Width="109"/>
-
-
-
-        <Label Content="Strength" HorizontalAlignment="Left" Margin="92,464,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="Agility" HorizontalAlignment="Left" Margin="92,490,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="Intelligence" HorizontalAlignment="Left" Margin="92,512,0,0" VerticalAlignment="Top"  Width="100"/>
-        <Label Content="Worth" HorizontalAlignment="Left" Margin="92,533,0,0" VerticalAlignment="Top"  Width="100"/>
-        <Label Content="{Binding Ninja.Strength}" HorizontalAlignment="Left" Margin="192,464,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="{Binding Ninja.Agility}" HorizontalAlignment="Left" Margin="192,512,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="{Binding Ninja.Intelligence}" HorizontalAlignment="Left" Margin="192,490,0,0" VerticalAlignment="Top" Width="100"/>
-        <Label Content="{Binding Ninja.Worth}" HorizontalAlignment="Left" Margin="192,536,0,0" VerticalAlignment="Top" Width="100"/>
+        <Label Content="{Binding HeadEquipment}" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" Width="109"/>
     </Grid>
 </Window>
