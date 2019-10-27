@@ -25,11 +25,7 @@ namespace NinjaManager.ViewModels
 
         public void OpenNinja()
         {
-            // Open single ninja.
-            var context = GetInstance<SingleNinjaVM>();
-            context.Ninja = Ninja;
-
-            OpenWindow<NinjaWindow, SingleNinjaVM>(context);
+            OpenWindow<NinjaWindow, SingleNinjaVM>(new SingleNinjaVM(Ninja));
         }
 
         public void EditNinja()
