@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Command;
 using NinjaManager.Models;
 using System.Linq;
 using System.Windows.Input;

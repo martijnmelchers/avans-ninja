@@ -42,8 +42,11 @@
                     </GridView>
                 </ListView.View>
             </ListView>
+
+             
         </StackPanel>
-        <Button Command="{Binding AddNinjaCommand}" Content="Add Ninja" Margin="10,247,675,143"/>
+        <Button Command="{Binding AddNinjaCommand}" Content="Add Ninja" Margin="10,296,675,94"/>
+        <Button Command="{Binding OpenGearCommand}" Content="Open Gear menu" Margin="10,247,675,143"/>
 
     </Grid>
 </Window>

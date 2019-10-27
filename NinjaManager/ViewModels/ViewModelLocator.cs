@@ -31,6 +31,8 @@ namespace NinjaManager.ViewModels
             SimpleIoc.Default.Register<NinjaListVM>();
             SimpleIoc.Default.Register<SingleNinjaVM>();
             SimpleIoc.Default.Register<AddNinjaVM>();
+            SimpleIoc.Default.Register<GearListVM>();
+            SimpleIoc.Default.Register<EditGearVM>();
 
         }
 
@@ -42,6 +44,14 @@ namespace NinjaManager.ViewModels
             }
         }
 
+
+        public GearListVM Gears
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GearListVM>();
+            }
+        }
 
         public SingleNinjaVM Ninja
         {
